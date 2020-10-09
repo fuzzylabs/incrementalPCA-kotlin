@@ -1,12 +1,20 @@
 package ai.fuzzylabs.incrementalpca
 
 import koma.create
-import koma.extensions.map
 import koma.matrix.Matrix
 import koma.matrix.ejml.EJMLMatrix
 import koma.util.validation.validate
 import koma.zeros
 import org.ejml.simple.SimpleMatrix
+
+/**
+ * Flatten SimpleMatrix into a DoubleArray
+ */
+fun SimpleMatrix.toDoubleArray(): DoubleArray =
+        (0 until numElements).map {
+            index -> this.get(index)
+        }.toDoubleArray()
+
 
 /**
  * Class that performs Incremental PCA
@@ -30,9 +38,11 @@ class IncrementalPCA(private val d: Int, private val q: Int) {
         val eigenvalues = eigenDecomposition.eigenvalues.map { it.real }
         val sortedIndex = eigenvalues.zip(eigenvalues.indices).sortedByDescending { it.first }.unzip().second
 
-        val eigenvectorsList = sortedIndex.take(q).map { eigenDecomposition.getEigenVector(it) }
-        eigenvectors = EJMLMatrix(eigenvectorsList.first().concatColumns(*eigenvectorsList.takeLast(q - 1).toTypedArray()))
-        covarianceMatrix.validate { 'q' x 'd' }
+        val eigenvectorsArray = sortedIndex.take(q)
+                .map { eigenDecomposition.getEigenVector(it).toDoubleArray() }
+                .toTypedArray()
+        eigenvectors = create(eigenvectorsArray)
+        eigenvectors.validate { 'q' x 'd' }
     }
 
     fun initialize(X: Array<DoubleArray>): Array<DoubleArray> {
