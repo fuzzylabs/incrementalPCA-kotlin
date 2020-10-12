@@ -30,7 +30,7 @@ class IncrementalPCA(private val d: Int, private val q: Int) {
     private var n: Int = 0
 
     private fun updateMean(x: Matrix<Double>) {
-        this.mean = this.mean + (x - this.mean) * 1.0 / (n.toDouble() + 1.0)
+        this.mean = this.mean + (x - this.mean) / n.toDouble()
     }
 
     private fun updateEigen() {
@@ -41,7 +41,7 @@ class IncrementalPCA(private val d: Int, private val q: Int) {
         val eigenvectorsArray = sortedIndex.take(q)
                 .map { eigenDecomposition.getEigenVector(it).toDoubleArray() }
                 .toTypedArray()
-        eigenvectors = create(eigenvectorsArray)
+        eigenvectors = create(eigenvectorsArray).T
         eigenvectors.validate { 'q' x 'd' }
     }
 
