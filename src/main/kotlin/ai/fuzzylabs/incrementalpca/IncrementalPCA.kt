@@ -30,7 +30,7 @@ class IncrementalPCA(private val d: Int, private val q: Int) {
     private var n: Int = 0
 
     private fun updateMean(x: Matrix<Double>) {
-        this.mean = this.mean + (x - this.mean) / n.toDouble()
+        this.mean = this.mean + (x - this.mean) / (n.toDouble() + 1)
     }
 
     private fun updateEigen() {
@@ -72,12 +72,14 @@ class IncrementalPCA(private val d: Int, private val q: Int) {
         if (n == 0) throw Exception("Incremental PCA was not initialised")
         if (xMat.numCols() != d) throw Exception("Input vector has wrong dimensions")
 
-        n++
+
         updateMean(xMat)
         val xCentered = xMat.mapRows { it - mean }
-        covarianceMatrix = covarianceMatrix * (((n - 1) / n).toDouble()) + (xCentered.T * xCentered) / (n * n)
+        covarianceMatrix = covarianceMatrix * ((n - 1) / n.toDouble()) + (xCentered.T * xCentered) / (n * n)
 
         updateEigen()
+
+        n++
 
         return (xCentered * eigenvectors).to2DArray().first()
     }
