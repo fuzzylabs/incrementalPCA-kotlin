@@ -1,5 +1,5 @@
 # Incremental PCA
-[![](https://jitpack.io/v/fuzzylabs/IncrementalPCA-kotlin.svg)](https://jitpack.io/#fuzzylabs/IncrementalPCA-kotlin)
+[![](https://jitpack.io/v/fuzzylabs/incrementalPCA-kotlin.svg)](https://jitpack.io/#fuzzylabs/incrementalPCA-kotlin)
 
 The library provides methods for online PCA, based on incremental updates of the mean vector and the covariance matrix of real-time data, and eigen-value decomposition on the resulting covariance matrices.
 
@@ -44,11 +44,11 @@ Using Gradle, add JitPack as a repository
 and specify the library as a dependency
 ```
 	dependencies {
-	        implementation 'com.github.fuzzylabs:IncrementalPCA-kotlin:master-SNAPSHOT'
+	        implementation 'com.github.fuzzylabs:incrementalPCA-kotlin:master-SNAPSHOT'
 	}
 ```
 
-If you are not using Gradle, for other options, visit [package repository](https://jitpack.io/#fuzzylabs/IncrementalPCA-kotlin).
+If you are not using Gradle, for other options, visit [package repository](https://jitpack.io/#fuzzylabs/incrementalPCA-kotlin).
 
 ## Usage
 
