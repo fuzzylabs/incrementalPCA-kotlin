@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -30,9 +31,6 @@ local.properties
 .externalNativeBuild
 build
 captures
-gradle
-gradlew
-gradlew.bat
 bin/
 .settings
 .project
