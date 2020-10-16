@@ -45,7 +45,3 @@ publishing {
         }
     }
 }
-
-tasks.named('wrapper') {
-    distributionUrl = 'https://services.gradle.org/distributions/gradle-6.7-bin.zip'
-}
