@@ -46,7 +46,7 @@ val projection = ipca.update(data)
 
 ## Motivation
 
-For [Wearable My Foot project](), we need to preprocess the incoming signal, in such a way that we get a primary direction of motion. Analyzing data in a notebook after it has been collected, it is possible to perform PCA on the whole series of data. However, for the purpose of analysis on an Android device in real-time we need to update PCA in real-time as well (i.e. use online PCA algorithm).
+For [Wearable My Foot project](https://github.com/fuzzylabs/wearable-my-foot/), we need to preprocess the incoming signal, in such a way that we get a primary direction of motion. Analyzing data in a notebook after it has been collected, it is possible to perform PCA on the whole series of data. However, for the purpose of analysis on an Android device in real-time we need to update PCA in real-time as well (i.e. use online PCA algorithm).
  
 To the best of our knowledge, there's no suitable implementation of online PCA algorithms that can be used on Android. Therefore, we implemented it ourself.
 
